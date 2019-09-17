@@ -775,7 +775,7 @@
 							if (this.block.type == 'class')
 							{
 								toggleType = 'toggle';
-								classSize = $(this.block.blocks).filter('.' + this.block.value).size();
+								classSize = $(this.block.blocks).filter('.' + this.block.value).length;
 
 								if (this.block.blocksSize == classSize) toggleType = 'toggle';
 								else if (this.block.blocksSize > classSize) toggleType = 'set';
@@ -932,10 +932,10 @@
 				},
 				formatTableWrapping: function($formatted)
 				{
-					if ($formatted.closest('table').size() === 0) return;
+					if ($formatted.closest('table').length === 0) return;
 
-					if ($formatted.closest('tr').size() === 0) $formatted.wrap('<tr>');
-					if ($formatted.closest('td').size() === 0 && $formatted.closest('th').size() === 0)
+					if ($formatted.closest('tr').length === 0) $formatted.wrap('<tr>');
+					if ($formatted.closest('td').length === 0 && $formatted.closest('th').length === 0)
 					{
 						$formatted.wrap('<td>');
 					}
@@ -1293,7 +1293,7 @@
 						if (this.rtePaste) return;
 
 						var $el = $(clickedElement);
-						if (!$el.hasClass('redactor-toolbar, redactor-dropdown') && !$el.is('#redactor-modal') && $el.parents('.redactor-toolbar, .redactor-dropdown, #redactor-modal').size() === 0)
+						if (!$el.hasClass('redactor-toolbar, redactor-dropdown') && !$el.is('#redactor-modal') && $el.parents('.redactor-toolbar, .redactor-dropdown, #redactor-modal').length === 0)
 						{
 							this.utils.disableSelectAll();
 							if ($.isFunction(this.opts.blurCallback)) this.core.setCallback('blur', e);
@@ -1570,7 +1570,7 @@
 					var btn = this.button.build(key, { title: title });
 					var $btn = this.button.get(afterkey);
 
-					if ($btn.size() !== 0) $btn.parent().after($('<li>').append(btn));
+					if ($btn.length !== 0) $btn.parent().after($('<li>').append(btn));
 					else this.$toolbar.append($('<li>').append(btn));
 
 					return btn;
@@ -1582,7 +1582,7 @@
 					var btn = this.button.build(key, { title: title });
 					var $btn = this.button.get(beforekey);
 
-					if ($btn.size() !== 0) $btn.parent().before($('<li>').append(btn));
+					if ($btn.length !== 0) $btn.parent().before($('<li>').append(btn));
 					else this.$toolbar.append($('<li>').append(btn));
 
 					return btn;
@@ -2941,7 +2941,7 @@
 					if (typeof json == 'string') return;
 
 					var linkmarker = $(this.$editor.find('a#filelink-marker'));
-					if (linkmarker.size() !== 0) linkmarker.removeAttr('id');
+					if (linkmarker.length !== 0) linkmarker.removeAttr('id');
 					else linkmarker = false;
 
 					this.core.setCallback('fileUpload', linkmarker, json);
@@ -2958,7 +2958,7 @@
 
 					var first = this.$editor.children().first();
 
-					if (first.size() === 0) return;
+					if (first.length === 0) return;
 					if (first[0].length === 0 || first[0].tagName == 'BR' || first[0].nodeType == 3)
 					{
 						return;
@@ -3065,7 +3065,7 @@
 						var $redactorImageLink = $('#redactor-image-link');
 
 						$redactorImageLink.attr('href', $image.attr('src'));
-						if ($link.size() !== 0)
+						if ($link.length !== 0)
 						{
 							$redactorImageLink.val($link.attr('href'));
 							if ($link.attr('target') == '_blank') $('#redactor-image-link-blank').prop('checked', true);
@@ -3126,7 +3126,7 @@
 					{
 						var target = ($('#redactor-image-link-blank').prop('checked')) ? true : false;
 
-						if ($link.size() === 0)
+						if ($link.length === 0)
 						{
 							var a = $('<a href="' + link + '">' + this.utils.getOuterHtml($image) + '</a>');
 							if (target) a.attr('target', '_blank');
@@ -3146,7 +3146,7 @@
 							}
 						}
 					}
-					else if ($link.size() !== 0)
+					else if ($link.length !== 0)
 					{
 						$link.replaceWith(this.utils.getOuterHtml($image));
 
@@ -3169,7 +3169,7 @@
 					{
 						this.observe.image = $image;
 
-						if (this.$editor.find('#redactor-image-box').size() !== 0) return false;
+						if (this.$editor.find('#redactor-image-box').length !== 0) return false;
 
 
 						this.image.resizer = this.image.loadEditableControls($image);
@@ -3242,7 +3242,7 @@
 				},
 				onDrag: function(e)
 				{
-					if (this.$editor.find('#redactor-image-box').size() !== 0)
+					if (this.$editor.find('#redactor-image-box').length !== 0)
 					{
 						e.preventDefault();
 						return false;
@@ -3281,7 +3281,7 @@
 					}
 
 					var imageBox = this.$editor.find('#redactor-image-box');
-					if (imageBox.size() === 0) return;
+					if (imageBox.length === 0) return;
 
 					this.image.editter.remove();
 					$(this.image.resizer).remove();
@@ -3377,18 +3377,18 @@
 					var $link = $image.closest('a');
 					var $figure = $image.closest('figure');
 					var $parent = $image.parent();
-					if ($('#redactor-image-box').size() !== 0)
+					if ($('#redactor-image-box').length !== 0)
 					{
 						$parent = $('#redactor-image-box').parent();
 					}
 
 					var $next;
-					if ($figure.size() !== 0)
+					if ($figure.length !== 0)
 					{
 						$next = $figure.next();
 						$figure.remove();
 					}
-					else if ($link.size() !== 0)
+					else if ($link.length !== 0)
 					{
 						$parent = $link.parent();
 						$link.remove();
@@ -3400,7 +3400,7 @@
 
 					$('#redactor-image-box').remove();
 
-					if ($figure.size() !== 0)
+					if ($figure.length !== 0)
 					{
 						this.caret.setStart($next);
 					}
@@ -3563,14 +3563,14 @@
 
 					var $item = $(current).closest('li');
 					var $parent = $item.parent();
-					if ($item.size() !== 0 && $parent.size() !== 0 && $parent[0].tagName == 'LI')
+					if ($item.length !== 0 && $parent.length !== 0 && $parent[0].tagName == 'LI')
 					{
 						$parent.after($item);
 					}
 
 					this.indent.fixEmptyIndent();
 
-					if (!this.opts.linebreaks && $item.size() === 0)
+					if (!this.opts.linebreaks && $item.length === 0)
 					{
 						document.execCommand('formatblock', false, 'p');
 						this.$editor.find('ul, ol, blockquote, p').each($.proxy(this.utils.removeEmpty, this));
@@ -3668,7 +3668,7 @@
 					var $parent = $(current).closest(tag + '[data-redactor-tag=' + tag + ']');
 
 					// inline there is
-					if ($parent.size() !== 0)
+					if ($parent.length !== 0)
 					{
 						this.caret.setAfter($parent[0]);
 
@@ -4311,7 +4311,7 @@
 							current = this.selection.getCurrent();
 							$next = $(current).next();
 
-							if ($next.size() !== 0 && $next[0].tagName == 'BR')
+							if ($next.length !== 0 && $next[0].tagName == 'BR')
 							{
 								return this.keydown.insertBreakLine(e);
 							}
@@ -4385,7 +4385,7 @@
 							for (var i = 0; i < len; i++)
 							{
 								var children = $(nodes[i]).children('img');
-								if (children.size() !== 0)
+								if (children.length !== 0)
 								{
 									var self = this;
 									$.each(children, function(z,s)
@@ -4721,7 +4721,7 @@
 					var $parent = $(this.keydown.parent);
 					var td = $current.closest('td');
 
-					if (td.size() !== 0 && $current.closest('li') && $parent.children('li').size() === 1)
+					if (td.length !== 0 && $current.closest('li') && $parent.children('li').length === 1)
 					{
 						if (!this.utils.isEmpty($current.text())) return;
 
@@ -5000,7 +5000,7 @@
 					this.link.$node = false;
 
 					var $el = $(this.selection.getCurrent()).closest('a');
-					if ($el.size() !== 0 && $el[0].tagName === 'A')
+					if ($el.length !== 0 && $el[0].tagName === 'A')
 					{
 						this.link.$node = $el;
 
@@ -5176,7 +5176,7 @@
 					var parent = this.selection.getParent();
 					var $list = $(parent).closest('ol, ul');
 
-					if (!this.utils.isRedactorParent($list) && $list.size() !== 0)
+					if (!this.utils.isRedactorParent($list) && $list.length !== 0)
 					{
 						$list = false;
 					}
@@ -5298,7 +5298,7 @@
 
 					this.indent.fixEmptyIndent();
 
-					if (!this.opts.linebreaks && $current.closest('li, th, td').size() === 0)
+					if (!this.opts.linebreaks && $current.closest('li, th, td').length === 0)
 					{
 						document.execCommand('formatblock', false, 'p');
 						this.$editor.find('ul, ol, blockquote').each($.proxy(this.utils.removeEmpty, this));
@@ -5306,7 +5306,7 @@
 
 					var $table = $(this.selection.getCurrent()).closest('table');
 					var $prev = $table.prev();
-					if (!this.opts.linebreaks && $table.size() !== 0 && $prev.size() !== 0 && $prev[0].tagName == 'BR')
+					if (!this.opts.linebreaks && $table.length !== 0 && $prev.length !== 0 && $prev[0].tagName == 'BR')
 					{
 						$prev.remove();
 					}
@@ -5567,7 +5567,7 @@
 				setButtonsWidth: function()
 				{
 					var buttons = this.$modalFooter.find('button');
-					var buttonsSize = buttons.size();
+					var buttonsSize = buttons.length;
 					if (buttonsSize === 0) return;
 
 					buttons.css('width', (100/buttonsSize) + '%');
@@ -5741,7 +5741,7 @@
 				showTooltip: function(e)
 				{
 					var $link = $(e.target);
-					if ($link.size() === 0 || $link[0].tagName !== 'A') return;
+					if ($link.length === 0 || $link[0].tagName !== 'A') return;
 
 					var pos = this.observe.getTooltipPosition($link);
 
@@ -7863,7 +7863,7 @@
 				isTag: function(current, tag)
 				{
 					var element = $(current).closest(tag);
-					if (element.size() == 1)
+					if (element.length == 1)
 					{
 						return element[0];
 					}
